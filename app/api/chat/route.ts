@@ -51,7 +51,7 @@ export async function POST(req: Request) {
       finalContent = JSON.parse(aiReply);
     } catch (e) {
       const cleanedText = aiReply.replace(/\*\*/g, '').trim();
-      const lines = cleanedText.split('\n').filter(l => l.trim() !== '');
+      const lines = cleanedText.split('\n').filter((l: string) => l.trim() !== '');
       finalContent = {
         title: lines[0] || "Ваш идеальный контент",
         body: cleanedText,
