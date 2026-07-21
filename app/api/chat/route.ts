@@ -1,4 +1,4 @@
-﻿import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
@@ -13,14 +13,14 @@ export async function POST(req: Request) {
     const userMsgs = messages.filter((m: any) => m.role === 'user');
     const lastUserMsg = userMsgs[userMsgs.length - 1]?.content || 'Бизнес-запрос';
 
-    const systemPrompt = `Ты — профессиональный коммерческий копирайтер и креативный директор.
-Твоя задача: на основе данных пользователя напиши идеальный пост для соцсетей.
+    const systemPrompt = `Ты — профессиональный коммерческий копирайтер.
+Твоя задача: на основе данных пользователя напиши крутой, продающий пост.
 Структура ответа (строго соблюдай JSON):
 {
   "title": "Цепляющий заголовок на русском",
   "body": "Основной текст поста. Формула: Боль -> Решение -> Выгода. Обязательно используй эмодзи.",
   "call_to_action": "Четкий призыв к действию",
-  "visual_prompt": "Детальный промпт для генерации картинки и видео на английском языке (для Midjourney, DALL-E, Luma)"
+  "visual_prompt": "Детальный промпт для генерации картинки и видео на английском языке"
 }`;
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
